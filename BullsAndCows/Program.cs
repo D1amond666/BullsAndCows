@@ -10,11 +10,11 @@ namespace BullsAndCows
         static readonly Random RandomGenerator = new Random();
 
         /// <summary>
-        /// Генерирует и возвращает указанное количество неповторяющихся цифр.
+        /// Generates and returns the specified number of non-repeating digits.
         /// </summary>
-        /// <param name="length">Количество цифр. Не может превышать 9.</param>
+        /// <param name="length">Number of digits. Cannot exceed 9.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Выбрасывается если невозможно сгенерировать требуемое количество неповторяющихся цифр.
+        /// Thrown if it is not possible to generate the required number of non-repeating digits.
         /// </exception>
         static int[] GetRandomDigits(int length)
         {
@@ -52,12 +52,12 @@ namespace BullsAndCows
         }
 
         /// <summary>
-        /// Выделяет из переданной строки требуемое количество цифр.
+        /// Extracts the required number of digits from the given string.
         /// </summary>
         /// <returns>
-        /// Возвращает ровно <paramref name="length"/> выделенных из строки цифр,
-        /// но только если строка не содержит ничего кроме необходимого числа цифр.
-        /// Иначе возвращает null: если в строке есть лишние симфолы или их не хватает.
+        /// Returns exactly <paramref name="length"/> digits extracted from the string,
+        /// but only if the string contains nothing but the required number of digits.
+        /// Otherwise, it returns null: if there are extra characters in the string or there are not enough of them.
         /// </returns>
         static int[] SplitNumber(string str, int length)
         {
@@ -84,13 +84,13 @@ namespace BullsAndCows
         }
 
         /// <summary>
-        /// Запрашивает у пользователя корректную длину числа.
+        /// Prompts the user for the correct number length.
         /// </summary>
         static int AskLength()
         {
             while (true)
             {
-                Console.Write("Введите длину загадываемого числа: ");
+                Console.Write("Enter the length of the guessed number:");
                 var input = Console.ReadLine();
                 if (input == null)
                 {
@@ -117,7 +117,7 @@ namespace BullsAndCows
         }
 
         /// <summary>
-        /// Возвращает, есть ли в переданном массиве повторяющиеся числа
+        /// Returns whether the given array contains duplicate numbers
         /// </summary>
         static bool ContainsDuplicates(int[] numbers)
         {
@@ -135,13 +135,13 @@ namespace BullsAndCows
         }
 
         /// <summary>
-        /// Запрашивает у пользователя требуемое количество цифр до тех пор пока он не введет корректное число.
+        /// Prompts the user for the required number of digits until the user enters the correct number.
         /// </summary>
         static int[] AskUser(int length)
         {
             while (true)
             {
-                Console.Write("Ваша догадка: ");
+                Console.Write("Your guess:");
                 var input = Console.ReadLine();
 
                 // Documentation says that Console.ReadLine() may return null.
@@ -168,9 +168,9 @@ namespace BullsAndCows
         }
 
         /// <summary>
-        /// Играет ровно один раунд с пользователем до тех пор, пока он не победит.
+        /// Plays exactly one round with the user until they win.
         /// </summary>
-        /// <param name="length">Длина загаданного числа.</param>
+        /// <param name="length">The length of the given number.</param>
         static void PlaySingleGame(int length)
         {
             var number = GetRandomDigits(length);
@@ -208,12 +208,12 @@ namespace BullsAndCows
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Это игра «Быки и коровы»!");
-            Console.WriteLine("Компьютер загадывает число, а игрок должен будет его отгадать.");
-            Console.WriteLine("Гарантируется, что все цифры в загаданном числе различны.");
-            Console.WriteLine("Также и игроку нельзя вводить повторяющиеся цифры, это слишком облегчает игру.");
-            Console.WriteLine("Быки: количество правильных цифр на правильных местах.");
-            Console.WriteLine("Коровы: количество цифр, которые присутствуют где-то в загаданном числе, но не на том месте.");
+            Console.WriteLine("This is the Bulls and Cows game.»!");
+            Console.WriteLine("The computer guesses the number, and the player will have to guess it.");
+            Console.WriteLine("It is guaranteed that all digits in the given number are distinct.");
+            Console.WriteLine("Also, the player cannot enter repeated numbers, this makes the game too easy.");
+            Console.WriteLine("Bulls: the number of correct digits in the correct places.");
+            Console.WriteLine("Cows: the number of digits that are present somewhere in the hidden number, but in the wrong place.");
             Console.WriteLine("");
             string choice;
             do
@@ -222,7 +222,7 @@ namespace BullsAndCows
 
                 PlaySingleGame(length);
 
-                Console.Write("Введите 'y' чтобы сыграть ещё раз. ");
+                Console.Write("Enter 'y' to play again. ");
                 choice = Console.ReadLine();
             } while (choice == "y");
         }
